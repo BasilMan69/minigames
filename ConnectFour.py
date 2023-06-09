@@ -19,7 +19,11 @@ class ConnectFour:
         self.board = []  # 5x7 board
         self.turn = 1  # 1 is p1, 2 is p2
         for i in range(5):
-            self.board.append([self.blank for i in range(7)])
+            self.board.append([self.blank for j in range(7)])
+    
+    def set_board_to_default(self):
+        for i in range(5):
+            self.board[i] = [self.blank for j in range(7)] 
 
     def closest_playable_square(self, col):
         for i in range(4, -1, -1):
@@ -79,6 +83,7 @@ class ConnectFour:
         while not game_over:
             game_over = self.play_one_turn()
         print(f"Game Over! Player {self.turn} has won.")
+        self.set_board_to_default()
 
     def has_won(self, row, col):
         count = 1
