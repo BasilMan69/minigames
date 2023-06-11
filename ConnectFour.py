@@ -43,7 +43,6 @@ class ConnectFour:
             print(f"Please play your move in a different column. The column {col} is full")
             self.display()
             self.play_one_turn()
-            return
         if self.turn == 1:
             square_to_place = self.p1_symbol
         else:
@@ -63,16 +62,17 @@ class ConnectFour:
         print("Hello 2 players to Connect Four.")
 
     def play_one_turn(self):
-        print(f"Player {self.turn}'s turn.")
-        input_col = int(input("Choose a column to move(1->7): "))
-        if input_col == 69:
-            return True
+        input_col = 0
         while input_col not in list(range(1, 8)):
-            print(
-                f"Invalid column: {input_col}. Please enter a different column.")
-            input_col = int(input("Choose a column to move(1->7): "))
+            print(f"Player {self.turn}'s turn.")
+            input_str = input("Choose a column to move(1->7): ")
+            try:
+                input_col = int(input_str)
+            except ValueError:
+                pass
             if input_col == 69:
                 return True
+            print("Please re-enter a valid column number.")
         row = self.add_to_col(input_col)
         self.display()
         game_over = self.has_won(row, input_col - 1)

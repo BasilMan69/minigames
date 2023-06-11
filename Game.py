@@ -6,15 +6,11 @@ def find_game(games, game_name):
 
 def choose_game(games):
     chosen_game_name = ""
-    print("Games: ")
-    for i in range(len(games)):
-        print(f'\t{i+1}. {games[i].name}')
-    chosen_game_name = int(input("Choose one above: "))
-    while chosen_game_name not in list(range()):
+    print("Games: "  +', '.join(games.keys())) 
+    chosen_game_name = input("Choose one above: ").lower()
+    while chosen_game_name not in [game_name.lower() for game_name in games.keys()]:
         print("Not an available game. Please choose again.")
-        print("Games: ")
-        for i in range(len(games)):
-            print(f'\t{i+1}. {games[i].name}')
+        print("Games: "  +', '.join(games.keys())) 
         chosen_game_name = input("Choose one above: ").lower()
     return chosen_game_name
 
@@ -42,7 +38,7 @@ def play_games(games):
     play_on_loop(games)
 
 
-games = []
+games = {}
 cf = ConnectFour()
-games.append(cf)
+games['Connect Four'] = cf
 play_games(games)
