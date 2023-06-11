@@ -3,6 +3,7 @@ import os
 
 
 class ConnectFour:
+    name = 'ConnectFour'
     p1_symbol = 'X'
     p2_symbol = 'O'
     blank = ' '
