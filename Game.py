@@ -1,23 +1,36 @@
 from ConnectFour import ConnectFour
-def find_game(games, game_name):
-        for key, value in games.items():
-            if key.lower() == game_name:
-                return value
+
+def find_game_by_name(games, name):
+    for game in games:
+        if game.name.lower() == name:
+            return game
 
 def choose_game(games):
-    chosen_game_name = ""
-    print("Games: "  +', '.join(games.keys())) 
-    chosen_game_name = input("Choose one above: ").lower()
-    while chosen_game_name not in [game_name.lower() for game_name in games.keys()]:
+    chosen_game_index = 0
+    index_bol = False
+    chosen_game_name = ''
+    print("Games: ")
+    for i in range(len(games)):
+        print(f"\t{i+1}. {games[i].name}")
+    chosen_game_str = input("Choose one above: ")
+    try:
+        chosen_game_index = int(chosen_game_str) - 1
+        index_bol = True
+    except ValueError:
+        chosen_game_name = chosen_game_str.lower()
+
+    if chosen_game_name not in [game.name.lower() for game in games] and chosen_game_index not in range(len(games)):
         print("Not an available game. Please choose again.")
-        print("Games: "  +', '.join(games.keys())) 
-        chosen_game_name = input("Choose one above: ").lower()
-    return chosen_game_name
+        choose_game(games)
+    else:
+        if index_bol:
+            return games[chosen_game_index]
+        else:
+            return find_game_by_name(games, chosen_game_name)
 
 def play_on_loop(games):
     print("What game do you want to play: ")
-    chosen_game_name = choose_game(games)
-    game_to_play = find_game(games, chosen_game_name)
+    game_to_play = choose_game(games)
     game_to_play.play()
     choice = ''
     while choice not in ["yes", "no"]:
@@ -38,7 +51,7 @@ def play_games(games):
     play_on_loop(games)
 
 
-games = {}
+games = []
 cf = ConnectFour()
-games['Connect Four'] = cf
+games.append(cf)
 play_games(games)

@@ -3,7 +3,7 @@ import os
 
 
 class ConnectFour:
-    name = 'ConnectFour'
+    name = 'Connect Four'
     p1_symbol = 'X'
     p2_symbol = 'O'
     blank = ' '
@@ -41,7 +41,6 @@ class ConnectFour:
         index_to_place = self.closest_playable_square(col)
         if index_to_place == -1:
             print(f"Please play your move in a different column. The column {col} is full")
-            self.display()
             self.play_one_turn()
         if self.turn == 1:
             square_to_place = self.p1_symbol
