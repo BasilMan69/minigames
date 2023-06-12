@@ -1,14 +1,6 @@
 from time import sleep
 import os
 
-# custom_board = [
-#     [' ', ' ', ' ', ' ', ' ', ' ', ' ',],
-#     [' ', ' ', ' ', 'O', ' ', ' ', ' ',],
-#     [' ', ' ', 'O', 'X', ' ', ' ', ' ',],
-#     [' ', 'O', 'X', 'O', ' ', ' ', ' ',],
-#     [' ', 'X', 'O', 'X', ' ', ' ', ' ',],
-# ]
-
 class ConnectFour:
     name = 'Connect Four'
     p1_symbol = 'X'

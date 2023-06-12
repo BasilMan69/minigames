@@ -1,6 +1,8 @@
 from ConnectFour import ConnectFour
 from Caro import Caro
 
+goodbye = "Bye!See you next time."
+
 def find_game_by_name(games, name):
     for game in games:
         if game.name.lower() == name:
@@ -20,13 +22,13 @@ def choose_game(games):
     try:
         chosen_game_index = int(chosen_game_str) - 1
         if chosen_game_index == quit_index - 1:
-            print("See you next time.")
+            print(goodbye)
             return None
         index_bol = True
     except ValueError:
         chosen_game_name = chosen_game_str.lower()
         if chosen_game_name == 'quit':
-            print("See you next time.")
+            print(goodbye)
             return None
 
     if chosen_game_name not in [game.name.lower() for game in games] and chosen_game_index not in range(len(games)):
@@ -48,7 +50,7 @@ def play_on_loop(games):
     while choice not in ["yes", "no"]:
         choice = input("Do you want to continue playing:\nYes || No\n").lower()
     if choice == "no":
-        print("See you next time.")
+        print(goodbye)
         return
     play_on_loop(games)
 
@@ -58,7 +60,7 @@ def play_games(games):
     while choice not in ["yes", "no"]:
         choice = input("Do you want to play games today:\nYes || No\n").lower()
     if choice == "no":
-        print("See you next time.")
+        print(goodbye)
         return
     play_on_loop(games)
 
