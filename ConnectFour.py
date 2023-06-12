@@ -72,7 +72,7 @@ class ConnectFour:
                 pass
             if input_col == 69:
                 return True
-            print("Please re-enter a valid column number.")
+            if input_col not in list(range(1, 8)): print("Please re-enter a valid column number.")
         row = self.add_to_col(input_col)
         self.display()
         game_over = self.has_won(row, input_col - 1)
