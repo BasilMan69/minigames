@@ -1,12 +1,20 @@
 from time import sleep
 import os
 
+# custom_board = [
+#     [' ', ' ', ' ', ' ', ' ', ' ', ' ',],
+#     [' ', ' ', ' ', 'O', ' ', ' ', ' ',],
+#     [' ', ' ', 'O', 'X', ' ', ' ', ' ',],
+#     [' ', 'O', 'X', 'O', ' ', ' ', ' ',],
+#     [' ', 'X', 'O', 'X', ' ', ' ', ' ',],
+# ]
 
 class ConnectFour:
     name = 'Connect Four'
     p1_symbol = 'X'
     p2_symbol = 'O'
     blank = ' '
+
 
     def __init__(self):
         self.board = []  # 5x7 board
@@ -78,6 +86,7 @@ class ConnectFour:
         return game_over
 
     def play(self):  # two players
+        self.set_board_to_default()
         self.start()
         game_over = False
         self.display()
@@ -85,7 +94,6 @@ class ConnectFour:
             game_over = self.play_one_turn()
             if self.is_draw():
                 print("Game Over! No one wins! It's a draw!")
-                self.set_board_to_default()
                 choice = ''
                 while choice not in ["yes", "no"]:
                     choice = input("Play again?\nYes || No\n").lower()
@@ -94,7 +102,6 @@ class ConnectFour:
                 else:
                     return
         print(f"Game Over! Player {self.turn} has won.")
-        self.set_board_to_default()
 
     def check_vertical(self, row, col):
         square = self.board[row][col]
@@ -138,7 +145,7 @@ class ConnectFour:
         for i in range(1, 4):
             if row+i < 5 and col-i >= 0 and self.board[row + i][col - i] == square:
                 count += 1
-            if col+i < 7 and row+i < 5 and self.board[row - i][col + i] == square:
+            if col+i < 7 and row-i >= 0 and self.board[row - i][col + i] == square:
                 count += 1
             if count >= 4:
                 return True
