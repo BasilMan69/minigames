@@ -1,7 +1,9 @@
-from ConnectFour import ConnectFour
-from Caro import Caro
+from connectFour import ConnectFour
+from caro import Caro
+from TowersOfHanoiDir import towersOfHanoi as ToH
+import TextAdventure
 
-goodbye = "Bye!See you next time."
+goodbye = "Bye! See you next time."
 
 def find_game_by_name(games, name):
     for game in games:
@@ -68,6 +70,10 @@ def play_games(games):
 games = []
 cf = ConnectFour()
 xo = Caro()
+toh = ToH.TowersOfHanoi()
+text_ad = TextAdventure.TextAdventure(TextAdventure.story_root)
 games.append(cf)
 games.append(xo)
+games.append(toh)
+games.append(text_ad)
 play_games(games)
